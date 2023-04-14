@@ -88,3 +88,19 @@ RUN pip3 config --user set global.disable-pip-version-check true && \
 
 # re-enable dialog mode for apt-get
 ENV DEBIAN_FRONTEND=dialog
+
+# Uses "Spaceship" theme with some customization. Uses some bundled plugins and installs some more from github
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+    -t https://github.com/denysdovhan/spaceship-prompt \
+    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
+    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
+    -p git \
+    -p ssh-agent \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions
+
+# Set the default shell to bash rather than sh
+ENV SHELL /bin/zsh
+
+# zsh configuration
+ADD .zshrc $HOME
