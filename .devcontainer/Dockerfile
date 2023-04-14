@@ -47,7 +47,7 @@ RUN groupadd --gid $USER_GID $USERNAME && \
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
-        git zsh curl wget \
+        git zsh curl wget nano \
         gcc g++ build-essential cmake build-essential \
         unzip libjpeg-dev libpng-dev libpq-dev \
         imagemagick gnuplot gnuplot-x11 libssl-dev libzmq3-dev graphviz \
